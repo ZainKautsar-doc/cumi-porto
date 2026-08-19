@@ -1,54 +1,63 @@
 import React from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
-import { heroText } from '../../data/portfolio';
-import Button from '../common/Button';
-import BlobShape from '../common/BlobShape';
 import Container from '../layout/Container';
 
 export default function Hero() {
   const { isId } = useLanguage();
 
   return (
-    <section id="hero" className="relative py-24 lg:py-36 bg-[#FAF8F3] overflow-hidden">
-      {/* Decorative Blob Shapes */}
-      <BlobShape color="pink" size="lg" className="-top-10 -left-20" animated />
-      <BlobShape color="blue" size="md" className="bottom-0 right-[-5%]" animated />
-
-      <Container className="relative z-10 text-center">
-        <div className="max-w-4xl mx-auto space-y-6">
+    <section id="hero" className="relative pt-12 sm:pt-16 pb-20 lg:pb-32 bg-[#FAF8F3] overflow-hidden">
+      <Container className="relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Cursive Tagline */}
-          <span className="block font-cursive text-2xl sm:text-3xl lg:text-4xl text-[#E8A0BF] animate-slideInUp">
-            {isId ? heroText.tagline.id : heroText.tagline.en}
-          </span>
+          {/* Left Column: Tilted Card Frame with Soft Blue Blob Backdrop */}
+          <div className="lg:col-span-6 relative flex justify-center lg:justify-start">
+            {/* Soft Sky Blue Blob Backdrop */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] sm:w-[380px] lg:w-[480px] h-[85%] sm:h-[420px] lg:h-[520px] bg-[#D4E8FF] rounded-[50%_50%_45%_55%/55%_45%_55%_45%] blur-xl -z-10 animate-[floatBlob_8s_ease-in-out_infinite]" />
 
-          {/* Main Serif Heading (72px desktop / 48px mobile) */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-[#1a1a2e] tracking-tight leading-[1.1] animate-fadeIn">
-            {isId ? heroText.title.id : heroText.title.en}
-          </h1>
-
-          {/* Subheading */}
-          <p className="text-lg sm:text-xl font-semibold text-slate-700 font-sans tracking-wide">
-            {isId ? heroText.subtitle.id : heroText.subtitle.en}
-          </p>
-
-          {/* Action Buttons */}
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button href="#about" variant="primary" size="lg">
-              {isId ? heroText.exploreBtn.id : heroText.exploreBtn.en}
-            </Button>
-            <Button href="#contact" variant="secondary" size="lg">
-              {isId ? heroText.contactBtn.id : heroText.contactBtn.en}
-            </Button>
+            {/* Slightly Tilted Grey Image Placeholder Card */}
+            <div className="w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] aspect-[4/5] bg-slate-200/90 border border-slate-400/40 rounded-3xl shadow-xl transform -rotate-3 hover:rotate-0 transition-transform duration-500 flex items-center justify-center p-6 relative overflow-hidden group">
+              <img
+                src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80"
+                alt="Mapping Geospasial Data"
+                className="w-full h-full object-cover rounded-2xl opacity-90 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                <span className="text-xs font-bold uppercase tracking-wider text-sky-200">GIS & Remote Sensing</span>
+                <h3 className="text-xl font-bold">Putri Arielia</h3>
+              </div>
+            </div>
           </div>
 
-          {/* Skill Pills */}
-          <div className="pt-8 flex flex-wrap items-center justify-center gap-2">
-            {["ArcGIS Pro", "ArcMap", "QGIS", "Remote Sensing", "Cartography"].map((item) => (
-              <span key={item} className="px-3.5 py-1.5 rounded-full bg-white/80 border border-slate-200/80 text-xs font-semibold text-slate-700 shadow-2xs">
-                {item}
-              </span>
-            ))}
+          {/* Right Column: Hero Headline, Subtitle, & Dark/Outline Buttons */}
+          <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
+            
+            {/* Bold Heavy Headline (Mapping the World's Data) */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111827] tracking-tight leading-[1.1]">
+              Mapping the World's Data
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg font-medium text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              Putri Arielia - Geographic Information Systems (GIS) & Remote Sensing Enthusiast
+            </p>
+
+            {/* Action Buttons: Dark Pill "View Work" + Rounded Outline "Get in Touch" */}
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <a
+                href="#about"
+                className="w-full sm:w-auto inline-flex items-center justify-center bg-[#181E24] hover:bg-slate-800 text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-md transition-all hover:scale-105"
+              >
+                {isId ? 'Lihat Karya' : 'View Work'}
+              </a>
+              <a
+                href="#contact"
+                className="w-full sm:w-auto inline-flex items-center justify-center bg-transparent hover:bg-white text-slate-800 border-2 border-slate-700 font-bold text-sm px-8 py-3.5 rounded-full transition-all hover:scale-105"
+              >
+                {isId ? 'Hubungi Saya' : 'Get in Touch'}
+              </a>
+            </div>
+
           </div>
 
         </div>
