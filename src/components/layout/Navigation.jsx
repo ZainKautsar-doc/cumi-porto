@@ -59,12 +59,7 @@ export default function Navigation() {
           {/* Dark Pill Download CV Button */}
           <a
             href={personalInfo.cvUrl}
-            onClick={(e) => {
-              if (personalInfo.cvUrl === '#') {
-                e.preventDefault();
-                alert(isId ? "CV Putri Arielia dapat diminta langsung via email/LinkedIn." : "CV can be requested directly via email/LinkedIn.");
-              }
-            }}
+            download="CV_Putri_Arielia.pdf"
             className="bg-[#181E24] hover:bg-slate-800 text-white text-xs font-semibold px-6 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all hover:scale-105"
           >
             {isId ? 'Unduh CV' : 'Download CV'}
@@ -116,12 +111,7 @@ export default function Navigation() {
           <div className="pt-3 border-t border-slate-300/60">
             <a
               href={personalInfo.cvUrl}
-              onClick={(e) => {
-                if (personalInfo.cvUrl === '#') {
-                  e.preventDefault();
-                  alert(isId ? "CV dapat diminta via email." : "CV can be requested via email.");
-                }
-              }}
+              download="CV_Putri_Arielia.pdf"
               className="w-full flex items-center justify-center bg-[#181E24] text-white text-xs font-semibold py-3 rounded-full shadow-sm"
             >
               {isId ? 'Unduh CV' : 'Download CV'}

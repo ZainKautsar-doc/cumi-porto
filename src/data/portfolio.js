@@ -13,7 +13,7 @@ export const personalInfo = {
   phone: "+62 895 3939 08625",
   phoneRaw: "0895393908625",
   linkedin: "https://www.linkedin.com/in/putriarielia/",
-  cvUrl: "#",
+  cvUrl: "/CV_Putri_Arielia.pdf",
 };
 
 export const bioText = {
