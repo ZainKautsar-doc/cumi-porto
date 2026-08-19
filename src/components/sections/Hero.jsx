@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../../hooks/useLanguage';
 import Container from '../layout/Container';
 
@@ -6,12 +7,25 @@ export default function Hero() {
   const { isId } = useLanguage();
 
   return (
-    <section id="hero" className="relative pt-12 sm:pt-16 pb-20 lg:pb-32 bg-[#FAF8F3] overflow-hidden">
+    <motion.section
+      id="hero"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      className="relative pt-12 sm:pt-16 pb-20 lg:pb-32 bg-[#FAF8F3] overflow-hidden"
+    >
       <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Tilted Card Frame with Soft Blue Blob Backdrop */}
-          <div className="lg:col-span-6 relative flex justify-center lg:justify-start">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-6 relative flex justify-center lg:justify-start"
+          >
             {/* Soft Sky Blue Blob Backdrop */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] sm:w-[380px] lg:w-[480px] h-[85%] sm:h-[420px] lg:h-[520px] bg-[#D4E8FF] rounded-[50%_50%_45%_55%/55%_45%_55%_45%] blur-xl -z-10 animate-[floatBlob_8s_ease-in-out_infinite]" />
 
@@ -27,11 +41,16 @@ export default function Hero() {
                 <h3 className="text-xl font-bold">Putri Arielia</h3>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Hero Headline, Subtitle, & Dark/Outline Buttons */}
-          <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
-            
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="lg:col-span-6 space-y-6 text-center lg:text-left"
+          >
             {/* Bold Heavy Headline (Mapping the World's Data) */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111827] tracking-tight leading-[1.1]">
               Mapping the World's Data
@@ -57,11 +76,10 @@ export default function Hero() {
                 {isId ? 'Hubungi Saya' : 'Get in Touch'}
               </a>
             </div>
-
-          </div>
+          </motion.div>
 
         </div>
       </Container>
-    </section>
+    </motion.section>
   );
 }

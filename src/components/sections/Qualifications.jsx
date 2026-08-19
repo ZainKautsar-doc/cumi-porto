@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../../hooks/useLanguage';
 import {
   educationList,
@@ -14,8 +15,30 @@ import { GraduationCap, Award, Wrench, Users, CheckCircle2 } from 'lucide-react'
 export default function Qualifications() {
   const { isId } = useLanguage();
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const columnVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <section id="qualifications" className="py-24 bg-[#FAF8F3] border-t border-slate-200/60">
+    <motion.section
+      id="qualifications"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      className="py-24 bg-[#FAF8F3] border-t border-slate-200/60"
+    >
       <Container className="space-y-16">
         
         <SectionHeading
@@ -24,11 +47,17 @@ export default function Qualifications() {
           subtitle={isId ? "Latar belakang akademik, lisensi profesi, dan kapabilitas teknis." : "Academic background, professional licenses, and technical capabilities."}
         />
 
-        {/* 3-Column Dashboard */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* 3-Column Dashboard with Staggered Animations */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+        >
           
           {/* Col 1: Education */}
-          <div className="bg-white p-8 rounded-2xl border-2 border-dashed border-[#E8A0BF]/50 shadow-sm flex flex-col justify-between space-y-6">
+          <motion.div variants={columnVariants} className="bg-white p-8 rounded-2xl border-2 border-dashed border-[#E8A0BF]/50 shadow-sm flex flex-col justify-between space-y-6">
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-[#1a1a2e] text-white flex items-center justify-center">
@@ -69,10 +98,10 @@ export default function Qualifications() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Col 2: Certifications & Leadership */}
-          <div className="bg-white p-8 rounded-2xl border-2 border-dashed border-[#E8A0BF]/50 shadow-sm flex flex-col justify-between space-y-6">
+          <motion.div variants={columnVariants} className="bg-white p-8 rounded-2xl border-2 border-dashed border-[#E8A0BF]/50 shadow-sm flex flex-col justify-between space-y-6">
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-[#1a1a2e] text-white flex items-center justify-center">
@@ -115,10 +144,10 @@ export default function Qualifications() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Col 3: Core Skills */}
-          <div className="bg-white p-8 rounded-2xl border-2 border-dashed border-[#E8A0BF]/50 shadow-sm flex flex-col justify-between space-y-6">
+          <motion.div variants={columnVariants} className="bg-white p-8 rounded-2xl border-2 border-dashed border-[#E8A0BF]/50 shadow-sm flex flex-col justify-between space-y-6">
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-[#1a1a2e] text-white flex items-center justify-center">
@@ -147,11 +176,11 @@ export default function Qualifications() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
       </Container>
-    </section>
+    </motion.section>
   );
 }

@@ -20,25 +20,26 @@
   font-family: 'Caveat', cursive;
 }
 
+/* Animations */
 @keyframes floatBlob {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
   50% { transform: translate(15px, -15px) rotate(5deg); }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideInUp {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-slideInUp {
-  animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

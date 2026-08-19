@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../../hooks/useLanguage';
 import { personalInfo } from '../../data/portfolio';
 import Container from '../layout/Container';
@@ -7,8 +8,30 @@ import { MapPin, Mail, Phone, Link2 } from 'lucide-react';
 export default function Contact() {
   const { isId } = useLanguage();
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-[#FAF8F3]">
+    <motion.section
+      id="contact"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      className="py-16 sm:py-24 bg-[#FAF8F3]"
+    >
       <Container>
         {/* Soft Pink Rounded Box Container matching reference screenshot */}
         <div className="bg-[#FAF0F2] border border-slate-400/30 rounded-3xl p-8 sm:p-14 lg:p-20 text-center shadow-xs space-y-10">
@@ -26,10 +49,16 @@ export default function Contact() {
           </div>
 
           {/* 2x2 Grid Contact Cards matching reference screenshot */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto text-left">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto text-left"
+          >
             
             {/* Card 1: Location */}
-            <div className="bg-[#FAF8F3] border border-slate-400/40 rounded-2xl p-5 flex items-center gap-4 transition-transform hover:-translate-y-0.5">
+            <motion.div variants={cardVariants} className="bg-[#FAF8F3] border border-slate-400/40 rounded-2xl p-5 flex items-center gap-4 transition-transform hover:-translate-y-0.5">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-700 shrink-0">
                 <MapPin className="w-5 h-5" />
               </div>
@@ -41,10 +70,11 @@ export default function Contact() {
                   {isId ? personalInfo.location.id : personalInfo.location.en}
                 </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 2: Email */}
-            <a
+            <motion.a
+              variants={cardVariants}
               href={`mailto:${personalInfo.email}`}
               className="bg-[#FAF8F3] border border-slate-400/40 rounded-2xl p-5 flex items-center gap-4 transition-transform hover:-translate-y-0.5 group"
             >
@@ -59,10 +89,11 @@ export default function Contact() {
                   {personalInfo.email}
                 </span>
               </div>
-            </a>
+            </motion.a>
 
             {/* Card 3: Phone */}
-            <a
+            <motion.a
+              variants={cardVariants}
               href={`https://wa.me/${personalInfo.phoneRaw}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -79,10 +110,11 @@ export default function Contact() {
                   {personalInfo.phone}
                 </span>
               </div>
-            </a>
+            </motion.a>
 
             {/* Card 4: LinkedIn */}
-            <a
+            <motion.a
+              variants={cardVariants}
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
@@ -99,12 +131,12 @@ export default function Contact() {
                   /in/putriarielia
                 </span>
               </div>
-            </a>
+            </motion.a>
 
-          </div>
+          </motion.div>
 
         </div>
       </Container>
-    </section>
+    </motion.section>
   );
 }
