@@ -3,48 +3,59 @@ import { personalInfo } from '../../data/portfolio';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F5F1EB] text-[#1a1a2e] pt-16 pb-12 border-t border-slate-900/5">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-12">
+    <footer className="bg-[#FAF8F3] text-[#181E24] pt-12 pb-16 border-t border-slate-300/40 font-sans">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col md:flex-row items-start justify-between gap-10">
         
-        {/* Row 1: Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          
-          {/* Brand */}
-          <div className="md:col-span-2 space-y-3">
-            <h3 className="font-serif text-3xl font-bold italic tracking-tight">{personalInfo.name}</h3>
-            <p className="text-sm text-slate-600 font-sans max-w-md leading-relaxed">
-              Geographic Information Systems (GIS) & Remote Sensing Enthusiast. Dedikasi untuk pemetaan data terpresisi, analisis spasial, dan kartu visualisasi berkualitas tinggi.
-            </p>
-          </div>
+        {/* Left Side: Cursive Name Brand & Copyright */}
+        <div className="space-y-3 max-w-sm">
+          <h3 className="font-cursive text-3xl sm:text-4xl font-bold text-[#181E24] tracking-wide">
+            {personalInfo.name}
+          </h3>
+          <p className="text-xs text-slate-500 font-medium leading-relaxed">
+            © {new Date().getFullYear()} Putri Arielia. GIS Professional based in Bandung, West Java.
+          </p>
+        </div>
 
-          {/* Quick Links */}
+        {/* Right Side: Navigation & Socials Links */}
+        <div className="flex items-start gap-16 text-xs">
+          
+          {/* Column 1: Navigation */}
           <div className="space-y-3">
-            <h4 className="font-serif text-base font-bold text-[#1a1a2e] uppercase tracking-wider">Navigation</h4>
-            <ul className="space-y-2 text-sm text-slate-600 font-sans">
-              <li><a href="#hero" className="hover:text-[#E8A0BF] transition-colors">Home</a></li>
-              <li><a href="#about" className="hover:text-[#E8A0BF] transition-colors">About Story</a></li>
-              <li><a href="#expertise" className="hover:text-[#E8A0BF] transition-colors">Expertise</a></li>
-              <li><a href="#experience" className="hover:text-[#E8A0BF] transition-colors">Experience</a></li>
-              <li><a href="#contact" className="hover:text-[#E8A0BF] transition-colors">Contact</a></li>
+            <h4 className="font-extrabold text-[#181E24] uppercase tracking-wider">
+              Navigation
+            </h4>
+            <ul className="space-y-2 text-slate-600 font-medium">
+              <li><a href="#about" className="hover:text-pink-600 transition-colors">About</a></li>
+              <li><a href="#experience" className="hover:text-pink-600 transition-colors">Experience</a></li>
+              <li><a href="#qualifications" className="hover:text-pink-600 transition-colors">Skills</a></li>
+              <li><a href="#contact" className="hover:text-pink-600 transition-colors">Contact</a></li>
             </ul>
           </div>
 
-          {/* Contact Details */}
+          {/* Column 2: Socials */}
           <div className="space-y-3">
-            <h4 className="font-serif text-base font-bold text-[#1a1a2e] uppercase tracking-wider">Contact</h4>
-            <p className="text-sm text-slate-600 font-sans leading-relaxed">
-              {personalInfo.location.en}<br />
-              <a href={`mailto:${personalInfo.email}`} className="hover:text-[#E8A0BF] transition-colors">{personalInfo.email}</a><br />
-              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-[#E8A0BF] transition-colors">LinkedIn Profile</a>
-            </p>
+            <h4 className="font-extrabold text-[#181E24] uppercase tracking-wider">
+              Socials
+            </h4>
+            <ul className="space-y-2 text-slate-600 font-medium">
+              <li>
+                <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-pink-600 transition-colors">
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${personalInfo.email}`} className="hover:text-pink-600 transition-colors">
+                  Email
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-pink-600 transition-colors">
+                  GitHub
+                </a>
+              </li>
+            </ul>
           </div>
 
-        </div>
-
-        {/* Row 2: Meta Copyright */}
-        <div className="pt-8 border-t border-slate-300/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-sans gap-4">
-          <p>© {new Date().getFullYear()} Putri Arielia. All rights reserved.</p>
-          <p>Universitas Pendidikan Indonesia • Sains Informasi Geografi</p>
         </div>
 
       </div>

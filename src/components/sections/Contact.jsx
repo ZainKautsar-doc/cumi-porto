@@ -2,69 +2,108 @@ import React from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { personalInfo } from '../../data/portfolio';
 import Container from '../layout/Container';
-import SectionHeading from '../common/SectionHeading';
-import ContactCard from '../common/ContactCard';
-import { MapPin, Mail, Phone } from 'lucide-react';
-
-const LinkedinIcon = (props) => (
-  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-  </svg>
-);
+import { MapPin, Mail, Phone, Link2 } from 'lucide-react';
 
 export default function Contact() {
   const { isId } = useLanguage();
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-[#FAF8F3] via-white to-[#F5F1EB] relative overflow-hidden">
-      <Container className="space-y-16">
-        
-        <SectionHeading
-          tagline={isId ? "Mari Terhubung" : "Let's Connect"}
-          title="Let's Connect & Collaborate"
-          subtitle={isId
-            ? "Interested in working together on spatial data projects, thematic mapping, or have a question about GIS? Reach out directly!"
-            : "Interested in working together on spatial data projects, thematic mapping, or have a question about GIS? Reach out directly!"}
-        />
-
-        {/* 4 Contact Cards Grid (Direct Contact Info) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+    <section id="contact" className="py-16 sm:py-24 bg-[#FAF8F3]">
+      <Container>
+        {/* Soft Pink Rounded Box Container matching reference screenshot */}
+        <div className="bg-[#FAF0F2] border border-slate-400/30 rounded-3xl p-8 sm:p-14 lg:p-20 text-center shadow-xs space-y-10">
           
-          {/* Location */}
-          <ContactCard
-            icon={MapPin}
-            label={isId ? "Lokasi" : "Location"}
-            value={isId ? personalInfo.location.id : personalInfo.location.en}
-          />
+          {/* Header Tagline & Title */}
+          <div className="space-y-4 max-w-2xl mx-auto">
+            <h2 className="font-cursive text-4xl sm:text-5xl lg:text-6xl text-[#181E24] tracking-wide">
+              Let's Collaborate
+            </h2>
+            <p className="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+              {isId
+                ? "Tertarik untuk berkolaborasi dalam proyek data spasial atau memiliki pertanyaan seputar GIS? Saya akan senang mendengar dari Anda."
+                : "Interested in working together on spatial data projects or have a question about GIS? I'd love to hear from you."}
+            </p>
+          </div>
 
-          {/* Email */}
-          <ContactCard
-            icon={Mail}
-            label="Email"
-            value={personalInfo.email}
-            href={`mailto:${personalInfo.email}`}
-          />
+          {/* 2x2 Grid Contact Cards matching reference screenshot */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto text-left">
+            
+            {/* Card 1: Location */}
+            <div className="bg-[#FAF8F3] border border-slate-400/40 rounded-2xl p-5 flex items-center gap-4 transition-transform hover:-translate-y-0.5">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-700 shrink-0">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="block text-xs font-bold uppercase tracking-wider text-slate-400">
+                  Location
+                </span>
+                <span className="text-sm sm:text-base font-bold text-[#181E24]">
+                  {isId ? personalInfo.location.id : personalInfo.location.en}
+                </span>
+              </div>
+            </div>
 
-          {/* Phone / WhatsApp */}
-          <ContactCard
-            icon={Phone}
-            label="WhatsApp"
-            value={personalInfo.phone}
-            href={`https://wa.me/${personalInfo.phoneRaw}`}
-          />
+            {/* Card 2: Email */}
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="bg-[#FAF8F3] border border-slate-400/40 rounded-2xl p-5 flex items-center gap-4 transition-transform hover:-translate-y-0.5 group"
+            >
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-700 shrink-0 group-hover:text-pink-600 transition-colors">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div className="truncate">
+                <span className="block text-xs font-bold uppercase tracking-wider text-slate-400">
+                  Email
+                </span>
+                <span className="text-sm sm:text-base font-bold text-[#181E24] group-hover:text-pink-600 transition-colors truncate">
+                  {personalInfo.email}
+                </span>
+              </div>
+            </a>
 
-          {/* LinkedIn */}
-          <ContactCard
-            icon={LinkedinIcon}
-            label="LinkedIn"
-            value="Putri Arielia"
-            href={personalInfo.linkedin}
-          />
+            {/* Card 3: Phone */}
+            <a
+              href={`https://wa.me/${personalInfo.phoneRaw}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#FAF8F3] border border-slate-400/40 rounded-2xl p-5 flex items-center gap-4 transition-transform hover:-translate-y-0.5 group"
+            >
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-700 shrink-0 group-hover:text-emerald-600 transition-colors">
+                <Phone className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="block text-xs font-bold uppercase tracking-wider text-slate-400">
+                  Phone
+                </span>
+                <span className="text-sm sm:text-base font-bold text-[#181E24] group-hover:text-emerald-600 transition-colors">
+                  {personalInfo.phone}
+                </span>
+              </div>
+            </a>
+
+            {/* Card 4: LinkedIn */}
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#FAF8F3] border border-slate-400/40 rounded-2xl p-5 flex items-center gap-4 transition-transform hover:-translate-y-0.5 group"
+            >
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-700 shrink-0 group-hover:text-blue-600 transition-colors">
+                <Link2 className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="block text-xs font-bold uppercase tracking-wider text-slate-400">
+                  LinkedIn
+                </span>
+                <span className="text-sm sm:text-base font-bold text-[#181E24] group-hover:text-blue-600 transition-colors">
+                  /in/putriarielia
+                </span>
+              </div>
+            </a>
+
+          </div>
 
         </div>
-
       </Container>
     </section>
   );
